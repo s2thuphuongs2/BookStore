@@ -78,7 +78,7 @@
 			<hr>
 		</c:forEach>
 
-		<div class="row mt-2 mb-4">
+		 <div class="row mt-2 mb-4">
 			<div class="text-end">
 				Tổng số hóa đơn: <span class="book-price fw-bold">${bill.getTotalPriceString()}
 					VND</span>
