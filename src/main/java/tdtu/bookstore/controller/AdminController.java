@@ -10,6 +10,8 @@ import tdtu.bookstore.repository.BookRepository;
 import tdtu.bookstore.repository.CategoryRepository;
 import tdtu.bookstore.repository.PublisherRepository;
 
+//Hello
+
 @Controller
 public class AdminController {
 	@Autowired
