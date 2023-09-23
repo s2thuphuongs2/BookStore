@@ -10,7 +10,7 @@ import tdtu.bookstore.repository.BookRepository;
 import tdtu.bookstore.repository.CategoryRepository;
 import tdtu.bookstore.repository.PublisherRepository;
 
-//Hello
+//Hell
 
 @Controller
 public class AdminController {
