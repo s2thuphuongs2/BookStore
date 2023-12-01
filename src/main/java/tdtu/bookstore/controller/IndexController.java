@@ -10,13 +10,11 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +33,7 @@ import tdtu.bookstore.repository.CartRepository;
 import tdtu.bookstore.repository.CategoryRepository;
 import tdtu.bookstore.repository.PublisherRepository;
 import tdtu.bookstore.repository.UserRepository;
-import tdtu.bookstore.security.CustomUserDetails;
+import tdtu.bookstore.config.CustomUserDetails;
 
 @Controller
 public class IndexController {

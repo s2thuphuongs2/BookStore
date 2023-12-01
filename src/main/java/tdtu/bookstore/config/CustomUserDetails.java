@@ -1,4 +1,4 @@
-package tdtu.bookstore.security;
+package tdtu.bookstore.config;
 
 import java.util.Collection;
 import java.util.Collections;
