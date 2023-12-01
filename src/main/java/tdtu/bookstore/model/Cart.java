@@ -16,14 +16,11 @@ import tdtu.bookstore.key.CartId;
 @IdClass(CartId.class)
 public class Cart {
 	@Id
-	@Column(name = "userid")
 	private Integer userid;
 	
 	@Id
-	@Column(name = "bookid")
 	private Integer bookid;
-	
-	@Column(name = "quantity")
+
 	private Integer quantity;
 }
 

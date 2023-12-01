@@ -26,25 +26,18 @@ public class Bill {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "userid")
 	private Integer userid;
 
-	@Column(name = "carts")
 	private String carts;
-	
-	@Column(name = "total")
+
 	private Integer total;
-	
-	@Column(name = "address")
+
 	private String address;
 
-	@Column(name = "phone")
 	private String phone;
-	
-	@Column(name = "status")
+
 	private Integer status = 0;
 
-	@Column(name = "adddate")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date adddate;
 

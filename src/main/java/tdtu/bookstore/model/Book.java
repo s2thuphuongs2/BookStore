@@ -26,35 +26,24 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "name")
 	private String name;
-	
-	@Column(name = "price")
-	private Integer price;
-	
-	@Column(name = "authorid")
-	private Integer authorid;
-	
-	@Column(name = "publisherid")
-	private Integer publisherid;
-	
-	@Column(name = "size")
-	private String size;
-	
-	@Column(name = "page")
-	private Integer page;
-	
-	@Column(name = "image")
-	private String image;
-	
-	@Column(name = "description")
-	private String description;
-	
 
-    @Column(name = "category")
+	private Integer price;
+
+	private Integer authorid;
+
+	private Integer publisherid;
+
+	private String size;
+
+	private Integer page;
+
+	private String image;
+
+	private String description;
+
     private String category;
-    
-    @Column(name = "adddate")
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date adddate;
     

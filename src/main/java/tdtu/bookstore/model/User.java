@@ -17,15 +17,12 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "username", unique = true)
+	@Column(unique = true)
 	private String username;
 
-	@Column(name = "password")
 	private String password;
 
-	@Column(name = "phone")
 	private String phone;
-	
-	@Column(name = "role")
+
 	private String role = "user";
 }
