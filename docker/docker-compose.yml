@@ -1,20 +1,10 @@
 version: '3.8'
 services:
   book_store:
-    image: mysql:8.0
-    cap_add:
-      - SYS_NICE
-    restart: always
+    image: postgres:latest
     environment:
-      - MYSQL_DATABASE=bookstore
-      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_ROOT_PASSWORD=
+      - POSTGRES_DB=Book_Store
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=bookstore_admin
     ports:
-      - '3306:3306'
-
-#  volumns:
-#    db:
-#      - ./docker/data:/docker-entrypoint-initdb.d
-volumes:
-  db:
-    driver: local
+      - '5432:5432'
