@@ -10,17 +10,13 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import tdtu.bookstore.dto.auth.input.LoginInput;
 import tdtu.bookstore.model.Author;
 import tdtu.bookstore.model.Bill;
 import tdtu.bookstore.model.Book;
@@ -35,31 +31,34 @@ import tdtu.bookstore.repository.CartRepository;
 import tdtu.bookstore.repository.CategoryRepository;
 import tdtu.bookstore.repository.PublisherRepository;
 import tdtu.bookstore.repository.UserRepository;
-import tdtu.bookstore.security.CustomUserDetails;
+import tdtu.bookstore.config.CustomUserDetails;
+import tdtu.bookstore.service.AuthService;
 
 @Controller
 public class IndexController {
 	@Autowired
-	BookRepository bookRepository;
+	private BookRepository bookRepository;
 
 	@Autowired
-	AuthorRepository authorRepository;
+	private AuthorRepository authorRepository;
 
 	@Autowired
-	PublisherRepository publisherRepository;
+	private PublisherRepository publisherRepository;
 
 	@Autowired
-	CategoryRepository categoryRepository;
+	private CategoryRepository categoryRepository;
 
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 	
 	@Autowired
-	CartRepository cartRepository;
+	private CartRepository cartRepository;
 	
 	@Autowired
-	BillRepository billRepository;
+	private BillRepository billRepository;
 
+	@Autowired
+	private AuthService authService;
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView("index");
@@ -168,10 +167,27 @@ public class IndexController {
 
 		return modelAndView;
 	}
-
+//TODO: sua lai register
 	@GetMapping("/register")
-	public ModelAndView register() {
-		return new ModelAndView("login/register");
+	public ModelAndView registeregister() {
+		return new ModelAndView("register");
+	}
+
+	@GetMapping("/login")
+	public ModelAndView login(Model model) {
+//		ModelAndView modelAndView = new ModelAndView("login");
+		model.addAttribute("loginInput", new LoginInput());
+
+		return new ModelAndView("login");
+	}
+
+	@PostMapping("/login")
+	public ModelAndView login(@ModelAttribute("loginInput") LoginInput loginInput){
+//		ModelAndView modelAndView = new ModelAndView("login");
+		if (authService.login(loginInput) != null)
+			return new ModelAndView("redirect:/register");
+		else
+			return new ModelAndView("login");
 	}
 
 	@PostMapping("/register")
@@ -197,7 +213,6 @@ public class IndexController {
 		setHeader(modelAndView);
 		
 		Integer userid = ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getId();
-		
 		List<Cart> carts = cartRepository.findAllByUserId(userid);
 		List<Integer> bookids = new ArrayList<Integer>();
 		
@@ -206,7 +221,7 @@ public class IndexController {
 		}
 		
 		List<Book> books = bookRepository.findAllById(bookids);
-		
+
 		for (int i = 0; i < books.size(); i++) {
 			books.get(i).setQuantity(carts.get(i).getQuantity());
 		}
@@ -261,7 +276,6 @@ public class IndexController {
 		setHeader(modelAndView);
 		
 		Integer userid = ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getId();
-		
 		List<Bill> bills = billRepository.findAllByUserId(userid);
 		Collections.reverse(bills);
 		modelAndView.addObject("bills", bills);

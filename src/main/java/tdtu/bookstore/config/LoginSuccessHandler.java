@@ -1,4 +1,4 @@
-package tdtu.bookstore.security;
+package tdtu.bookstore.config;
 
 import java.io.IOException;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import tdtu.bookstore.customenum.RoleEnum;
 
 @Component
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
@@ -18,7 +19,7 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
-		if (userDetails.getUser().getRole().equals( "admin")) {
+		if (userDetails.getUser().getRole().equals(RoleEnum.ADMIN)) {
 			response.sendRedirect("/admin/books");
 			return;
 		}

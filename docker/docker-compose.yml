@@ -13,8 +13,7 @@ services:
       - '3306:3306'
 
 #  volumns:
-#    db:
-#      - ./docker/data:/docker-entrypoint-initdb.d
+#     - ./docker/data:/docker-entrypoint-initdb.d
 volumes:
   db:
     driver: local

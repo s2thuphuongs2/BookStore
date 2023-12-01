@@ -11,4 +11,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query("SELECT user FROM User user WHERE username like :username")
 	public User findByUsername(String username);
+
+	@Query("SELECT user FROM User user WHERE phone like :phoneNumber")
+	User findFirstByPhoneNumber(String phoneNumber);
 }

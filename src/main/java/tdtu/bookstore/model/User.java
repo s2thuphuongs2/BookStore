@@ -1,16 +1,15 @@
 package tdtu.bookstore.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import tdtu.bookstore.customenum.RoleEnum;
 
 @Entity
 @Table(name = "users")
 @Data
+@Setter @Getter
 public class User {
 
 	@Id
@@ -25,7 +24,8 @@ public class User {
 
 	@Column(name = "phone")
 	private String phone;
-	
+
+	@Enumerated(EnumType.STRING)
 	@Column(name = "role")
-	private String role = "user";
+	private RoleEnum role = RoleEnum.USER;
 }

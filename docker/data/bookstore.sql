@@ -234,9 +234,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `phone`, `username`, `role`) VALUES
-(1, '$2a$10$3fUA5.9nYQGAmfFYdlBgr.pCNMl92hdv9SbCX.UgprJWe4z0NxFbW', '0909090909', 'admin', 'admin'),
-(2, '$2a$12$Y7pBkGGb6HnLrUa.XI3DaOb5hgIZXlREwSiPFNLWwS.1NydIR4JFa', '0909821234', 'user', 'user'),
-(13, '$2a$10$rLG0AlfycA3y3S3bv1zsn.FwSPGSeaZc.5hRkD3m/XnICTPUNlXcC', '0909090909', 'user2', 'user');
+(1, '$2a$10$3fUA5.9nYQGAmfFYdlBgr.pCNMl92hdv9SbCX.UgprJWe4z0NxFbW', '0909090909', 'admin', 'ADMIN'),
+(2, '$2a$12$Y7pBkGGb6HnLrUa.XI3DaOb5hgIZXlREwSiPFNLWwS.1NydIR4JFa', '0909821234', 'user', 'USER'),
+(13, '$2a$10$rLG0AlfycA3y3S3bv1zsn.FwSPGSeaZc.5hRkD3m/XnICTPUNlXcC', '0909090909', 'user2', 'USER');
 
 --
 -- Indexes for dumped tables
