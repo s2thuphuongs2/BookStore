@@ -69,7 +69,7 @@ UserRepository userRepository = (UserRepository) request.getAttribute("userRepos
 							</c:choose></td>
 						<td>
 							<button class="btn btn-primary" data-bs-toggle="modal"
-								data-bs-target="#viewModal" onclick="view(${bill.id})">
+								data-bs-target="#viewModal" onclick="viewBill(${bill.id})">
 								<i class="fa-solid fa-eye"></i>
 							</button>
 						</td>
@@ -89,42 +89,5 @@ UserRepository userRepository = (UserRepository) request.getAttribute("userRepos
 	</div>
 </body>
 
-<script>
-var curBillid = 0;
-
-async function view(billid) {
-	curBillid = billid;
-	const response = await fetch('/admin/bills/'+billid);
-	const billdetail = await response.text();
-	$("#modalBody").html(billdetail);
-}
-
-function doneBill() {
-    $.ajax({
-        url: '/admin/bills/'+curBillid+'/done',
-        type: 'post',
-        success: (data) => {
-        	if (data.includes("done_success")) {
-        		window.location.replace("/admin/bills")
-        	} else {
-        		alert("Hoàn thành đơn thất bại")
-        	}
-        }
-    });
-}
-
-function cancelBill() {
-    $.ajax({
-        url: '/admin/bills/'+curBillid+'/cancel',
-        type: 'post',
-        success: (data) => {
-        	if (data.includes("done_success")) {
-        		window.location.replace("/admin/bills")
-        	} else {
-        		alert("Hủy đơn thất bại")
-        	}
-        }
-    });
-}
-</script>
+<script src="../../../../../resources/static/assets/js/script.min.js"></script>
 </html>

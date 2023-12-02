@@ -34,7 +34,7 @@
 						<td>
 							<button class="btn btn-primary" data-bs-toggle="modal"
 								data-bs-target="#editModal"
-								onclick="edit(${user.id})">
+								onclick="editUser(${user.id})">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</button>
 						</td>
@@ -75,9 +75,7 @@
 
 <script>
 
-function edit(id) {
-	$("#editForm").attr("action","/admin/users/"+id+"/edit")
-}
+
 
 </script>
 </html>

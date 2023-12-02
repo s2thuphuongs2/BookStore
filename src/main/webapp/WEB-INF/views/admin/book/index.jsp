@@ -8,7 +8,6 @@
 <head>
 <jsp:include page="../../head.jsp"></jsp:include>
 <title>Quản lý sách</title>
-
 </head>
 <body class="d-flex flex-column vh-100">
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -43,11 +42,11 @@
 						<td>${publishers.stream().filter(publisher -> book.publisherid == publisher.id).findFirst().orElse(null).name}</td>
 						<td>
 							<button class="btn btn-primary" data-bs-toggle="modal"
-								data-bs-target="#editModal" onclick="edit(${book.id})">
+								data-bs-target="#editModal" onclick="editBook(${book.id})">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</button>
 							<button class="btn btn-danger" data-bs-toggle="modal"
-								data-bs-target="#deleteModal" onclick="deleteId(${book.id})">
+								data-bs-target="#deleteModal" onclick="deleteBook(${book.id})">
 								<i class="fa-solid fa-trash"></i>
 							</button>
 						</td>
@@ -350,59 +349,5 @@
 	</div>
 </body>
 
-<script>
-
-async function edit(bookid) {
-	const response = await fetch('/admin/books/'+bookid);
-	const book = await response.json();
-
-	$("#bookNameEdit").val(book.name)
-	$("#bookPriceEdit").val(book.price)
-	$("#bookSizeEdit").val(book.size)
-	$("#bookPageEdit").val(book.page)
-	
-	$("#bookDescEdit").val(book.description)
-	
-	$("#bookCateEdit").val(book.category.split(","))
-	$("#bookCateEdit").selectpicker("destroy")
-	$("#bookCateEdit").selectpicker()
-	
-	$("#bookPublEdit").val(book.publisherid)
-	$("#bookPublEdit").selectpicker("destroy")
-	$("#bookPublEdit").selectpicker()
-	
-	$("#bookAuthorEdit").val(book.authorid)
-	$("#bookAuthorEdit").selectpicker("destroy")
-	$("#bookAuthorEdit").selectpicker()
-	
-
-	$("#editForm").attr("action","/admin/books/"+book.id+"/edit")
-}
-
-async function deleteId(bookid) {
-	const response = await fetch('/admin/books/'+bookid);
-	const book = await response.json();
-
-	$("#bookNameDelete").val(book.name)
-	$("#bookPriceDelete").val(book.price)
-	$("#bookSizeDelete").val(book.size)
-	$("#bookPageDelete").val(book.page)
-	
-	$("#bookDescDelete").val(book.description)
-	
-	$("#bookCateDelete").val(book.category.split(","))
-	$("#bookCateDelete").selectpicker("destroy")
-	$("#bookCateDelete").selectpicker()
-	
-	$("#bookPublDelete").val(book.publisherid)
-	$("#bookPublDelete").selectpicker("destroy")
-	$("#bookPublDelete").selectpicker()
-	
-	$("#bookAuthorDelete").val(book.authorid)
-	$("#bookAuthorDelete").selectpicker("destroy")
-	$("#bookAuthorDelete").selectpicker()
-	
-	$("#deleteForm").attr("action","/admin/books/"+book.id+"/delete")
-}
-</script>
+<script src="../../../../../resources/static/assets/js/script.min.js"></script>
 </html>

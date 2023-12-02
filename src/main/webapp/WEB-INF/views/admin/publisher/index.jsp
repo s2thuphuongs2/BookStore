@@ -40,12 +40,12 @@
 						<td>
 							<button class="btn btn-primary" data-bs-toggle="modal"
 								data-bs-target="#editModal"
-								onclick="edit(${publisher.id}, '${publisher.name}')">
+								onclick="editPublisher(${publisher.id}, '${publisher.name}')">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</button>
 							<button class="btn btn-danger" data-bs-toggle="modal"
 								data-bs-target="#deleteModal"
-								onclick="deleteId(${publisher.id}, '${publisher.name}')">
+								onclick="deletePublisher(${publisher.id}, '${publisher.name}')">
 								<i class="fa-solid fa-trash"></i>
 							</button>
 						</td>
@@ -141,17 +141,5 @@
 		</form>
 	</div>
 </body>
-
-<script>
-
-function edit(id, name) {
-	$("#publisherNameEdit").val(name)
-	$("#editForm").attr("action","/admin/publishers/"+id+"/edit")
-}
-
-function deleteId(id, name) {
-	$("#publisherNameDelete").val(name)
-	$("#deleteForm").attr("action","/admin/publishers/"+id+"/delete")
-}
-</script>
+<script src="../../../../../resources/static/assets/js/script.min.js"></script>
 </html>

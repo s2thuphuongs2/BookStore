@@ -41,12 +41,12 @@
 						<td>
 							<button class="btn btn-primary" data-bs-toggle="modal"
 								data-bs-target="#editModal"
-								onclick="edit(${category.id}, '${category.name}')">
+								onclick="editCategory(${category.id}, '${category.name}')">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</button>
 							<button class="btn btn-danger" data-bs-toggle="modal"
 								data-bs-target="#deleteModal"
-								onclick="deleteId(${category.id}, '${category.name}')">
+								onclick="deleteCategory(${category.id}, '${category.name}')">
 								<i class="fa-solid fa-trash"></i>
 							</button>
 						</td>
@@ -142,16 +142,5 @@
 	</div>
 </body>
 
-<script>
-
-function edit(id, name) {
-	$("#categoryNameEdit").val(name)
-	$("#editForm").attr("action","/admin/categories/"+id+"/edit")
-}
-
-function deleteId(id, name) {
-	$("#categoryNameDelete").val(name)
-	$("#deleteForm").attr("action","/admin/categories/"+id+"/delete")
-}
-</script>
+<script src="../../../../../resources/static/assets/js/script.min.js"></script>
 </html>

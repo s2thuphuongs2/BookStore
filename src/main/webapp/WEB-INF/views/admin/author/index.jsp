@@ -41,12 +41,12 @@
 						<td>
 							<button class="btn btn-primary" data-bs-toggle="modal"
 								data-bs-target="#editModal"
-								onclick="edit(${author.id}, '${author.name}')">
+								onclick="editAuthor(${author.id}, '${author.name}')">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</button>
 							<button class="btn btn-danger" data-bs-toggle="modal"
 								data-bs-target="#deleteModal"
-								onclick="deleteId(${author.id}, '${author.name}')">
+								onclick="deleteAuthor(${author.id}, '${author.name}')">
 								<i class="fa-solid fa-trash"></i>
 							</button>
 						</td>
@@ -145,16 +145,5 @@
 	</div>
 </body>
 
-<script>
-
-function edit(id, name) {
-	$("#authorNameEdit").val(name)
-	$("#editForm").attr("action","/admin/authors/"+id+"/edit")
-}
-
-function deleteId(id, name) {
-	$("#authorNameDelete").val(name)
-	$("#deleteForm").attr("action","/admin/authors/"+id+"/delete")
-}
-</script>
+<script src="../../../../../resources/static/assets/js/script.min.js"></script>
 </html>
