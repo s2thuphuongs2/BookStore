@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import tdtu.bookstore.customenum.RoleEnum;
 import tdtu.bookstore.service.UserService;
 
 
@@ -30,8 +31,8 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.authorizeHttpRequests()
-		.requestMatchers("/admin", "/admin/**").hasAnyAuthority("admin")
-		.requestMatchers("/checkout", "/checkout/**", "/bills", "/bills/**").hasAnyAuthority("user", "admin")
+		.requestMatchers("/admin", "/admin/**").hasAnyAuthority("ADMIN")
+		.requestMatchers("/checkout", "/checkout/**", "/bills", "/bills/**").hasAnyAuthority("USER", "ADMIN")
 		.anyRequest().permitAll()
 		.and()
 		.formLogin().successHandler(loginSuccessHandler)
