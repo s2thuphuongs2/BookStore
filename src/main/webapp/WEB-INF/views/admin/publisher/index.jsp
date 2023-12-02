@@ -141,5 +141,4 @@
 		</form>
 	</div>
 </body>
-<script src="../../../../../resources/static/assets/js/script.min.js"></script>
 </html>

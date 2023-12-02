@@ -8,7 +8,6 @@
 <head>
 <jsp:include page="../../head.jsp"></jsp:include>
 <title>Quản lý tài khoản</title>
-
 </head>
 <body class="d-flex flex-column vh-100">
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -72,10 +71,4 @@
 		</form>
 	</div>
 </body>
-
-<script>
-
-
-
-</script>
 </html>

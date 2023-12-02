@@ -42,11 +42,11 @@
 						<td>${publishers.stream().filter(publisher -> book.publisherid == publisher.id).findFirst().orElse(null).name}</td>
 						<td>
 							<button class="btn btn-primary" data-bs-toggle="modal"
-								data-bs-target="#editModal" onclick="editBook(${book.id})">
+								data-bs-target="#editModal" onclick="editBookById(${book.id})">
 								<i class="fa-solid fa-pen-to-square"></i>
 							</button>
 							<button class="btn btn-danger" data-bs-toggle="modal"
-								data-bs-target="#deleteModal" onclick="deleteBook(${book.id})">
+								data-bs-target="#deleteModal" onclick="deleteBookById(${book.id})">
 								<i class="fa-solid fa-trash"></i>
 							</button>
 						</td>
@@ -348,6 +348,4 @@
 		</form>
 	</div>
 </body>
-
-<script src="../../../../../resources/static/assets/js/script.min.js"></script>
 </html>
