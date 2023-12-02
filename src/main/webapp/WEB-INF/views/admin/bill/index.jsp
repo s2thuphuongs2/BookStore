@@ -89,5 +89,5 @@ UserRepository userRepository = (UserRepository) request.getAttribute("userRepos
 	</div>
 </body>
 
-<script src="../../../../../resources/static/assets/js/script.min.js"></script>
+<script src="../../../../../resources/static/assets/js/scripts.js"></script>
 </html>

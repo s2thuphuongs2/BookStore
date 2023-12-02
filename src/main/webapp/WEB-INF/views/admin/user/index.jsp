@@ -72,10 +72,5 @@
 		</form>
 	</div>
 </body>
-
-<script>
-
-
-
-</script>
+<script src="../../../../../resources/static/assets/js/scripts.js"></script>
 </html>

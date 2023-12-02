@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<head>
-  <link rel="stylesheet" href="../../../../resources/static/assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-  <link rel="stylesheet" href="../../../../resources/static/assets/css/styles.min.css">
-</head>
+<%--<head>--%>
+<%--  <link rel="stylesheet" href="../../../../resources/static/assets/bootstrap/css/bootstrap.min.css">--%>
+<%--  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">--%>
+<%--  <link rel="stylesheet" href="../../../../resources/static/assets/css/styles.min.css">--%>
+<%--</head>--%>
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand">Admin</a>
