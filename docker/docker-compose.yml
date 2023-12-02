@@ -1,10 +1,30 @@
+#posgres database here
+#version: '3.8'
+#services:
+#  book_store:
+#    image: postgres:latest
+#    environment:
+#      - POSTGRES_DB=Book_Store
+#      - POSTGRES_USER=admin
+#      - POSTGRES_PASSWORD=bookstore_admin
+#    ports:
+#      - '5432:5432'
+
+
+#my sql database here
 version: '3.8'
 services:
   book_store:
-    image: postgres:latest
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
     environment:
-      - POSTGRES_DB=Book_Store
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=bookstore_admin
+      - MYSQL_DATABASE=bookstore
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_ROOT_PASSWORD=
     ports:
-      - '5432:5432'
+      - '3306:3306'
+volumes:
+  db:
+    driver: local
