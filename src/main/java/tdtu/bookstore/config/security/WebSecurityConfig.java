@@ -1,4 +1,4 @@
-package tdtu.bookstore.config;
+package tdtu.bookstore.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import tdtu.bookstore.config.LoginSuccessHandler;
 import tdtu.bookstore.config.filter.JWTFilter;
 import tdtu.bookstore.service.impl.UserServiceImpl;
 
