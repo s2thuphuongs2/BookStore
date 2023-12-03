@@ -8,9 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import tdtu.bookstore.customenum.RoleEnum;
-import tdtu.bookstore.service.AuthService;
-import tdtu.bookstore.service.UserService;
+import tdtu.bookstore.service.impl.UserServiceImpl;
 
 
 @Configuration
@@ -19,11 +17,9 @@ public class WebSecurityConfig {
 	
 	@Autowired
 	private LoginSuccessHandler loginSuccessHandler;
-	@Autowired
-	AuthService authService;
 	
 	@Bean
-	public DaoAuthenticationProvider getDaoAuthProvider(UserService userService) {
+	public DaoAuthenticationProvider getDaoAuthProvider(UserServiceImpl userService) {
 	  DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 	  provider.setUserDetailsService(userService);
 	  provider.setPasswordEncoder(new BCryptPasswordEncoder());
