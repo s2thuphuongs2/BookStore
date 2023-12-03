@@ -1,34 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="light" lang="en">
 <head>
-<jsp:include page="../../head.jsp"></jsp:include>
-<title>Quản lý tác giả</title>
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+	<jsp:include page="../../../assets/js/script.min.jsp"></jsp:include>
+	<jsp:include page="../../../assets/bootstrap/css/bootstrap.min.jsp"></jsp:include>
+	<jsp:include page="../../head.jsp"></jsp:include>
 </head>
-<body class="d-flex flex-column vh-100">
-	<div class="d-flex flex-row">
-		<!-- Header ở bên trái -->
-		<div class="header">
-			<jsp:include page="../header.jsp"></jsp:include>
-		</div>
-		<div class="main-content flex-grow-1">
-			<div class="d-flex px-4 py-1 bg-dark">
-				<div class="col col-9 fs-4 fw-bold text-white">Quản lý tác giả
-				</div>
-
-				<div class="col col-3 text-end">
-					<button type="button" class="btn btn-success custom-btn" data-bs-toggle="modal"
-							data-bs-target="#addModal">Thêm tác giả</button>
-				</div>
+<body id="page-top">
+<div id="wrapper">
+	<nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
+		<div class="container-fluid d-flex flex-column p-0"><a
+				class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/">
+			<div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
+			<div class="sidebar-brand-text mx-3"><span>ADMIN</span></div>
+		</a>
+			<hr class="sidebar-divider my-0">
+			<ul class="navbar-nav text-light" id="accordionSidebar">
+				<li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i><span>Home</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="/admin/books"><i class="fas fa-book"></i><span>Books</span></a></li>
+				<li class="nav-item"><a class="nav-link active" href="/admin/authors"><i class="fas fa-user"></i><span>Author</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="/admin/publishers"><i class="fas fa-building"></i><span>Publisher</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="/admin/categories"><i class="fas fa-list"></i><span>Category</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="/admin/bills"><i class="fas fa-money-bill"></i><span>Bills</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="/admin/users"><i class="fas fa-users"></i><span>Users</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+			</ul>
+			<div class="text-center d-none d-md-inline">
+				<button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
 			</div>
-
+		</div>
+	</nav>
+	<div class="d-flex flex-column" id="content-wrapper">
+		<div id="content">
+			<div class="d-sm-flex justify-content-between align-items-center mb-4">
+				<h3 class="text-dark mb-0">Quản Lý Tác Giả</h3>
+				<a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" data-bs-toggle="modal" data-bs-target="#addModal">
+					<i class="fas fa-add fa-sm text-white-50"></i>&nbsp;Thêm Tác Giả
+				</a>
+			</div>
 			<div class="overflow-auto">
-				<table class="table table-hover table-striped">
+				<table class="table-responsive table mt-2">
 					<thead>
 					<tr class="table-secondary">
 						<th scope="col">Id</th>
@@ -148,5 +165,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<jsp:include page="../../../assets/js/script.min.jsp"></jsp:include>
 </body>
 </html>
