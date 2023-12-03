@@ -1,45 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
+<div class="sidebar" id="sidebar">
+  <div class="brand">
     <a class="navbar-brand">Admin</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" a href="/">Trang chủ</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/books">Sách</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/authors">Tác giả</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/publishers">Nhà xuất bản</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/categories">Thể loại</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/bills">Hóa đơn</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/users">Tài khoản</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Đăng xuất</a>
-        </li>
-      </ul>
-    </div>
   </div>
-</nav>
+  <div class="nav-links">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i><span>Home</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/books"><i class="fas fa-book"></i><span>Books</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/authors"><i class="fas fa-user"></i><span>Author</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/publishers"><i class="fas fa-building"></i><span>Publisher</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/categories"><i class="fas fa-list"></i><span>Category</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/bills"><i class="fas fa-money-bill"></i><span>Bills</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="/admin/users"><i class="fas fa-users"></i><span>Users</span></a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+    </ul>
+  </div>
+  <div class="toggle-btn" onclick="toggleSidebar()">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+</div>

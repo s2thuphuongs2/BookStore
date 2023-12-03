@@ -3,7 +3,6 @@
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
 	integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 	crossorigin="anonymous"></script>
@@ -22,15 +21,72 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-	
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
-	
 <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<link href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+	.header {
+		background-color: #4e73df; /* Set the background color for the sidebar and header */
+	}
+	.custom-btn {
+		background-color: #0d6efd;
+		/* Add any additional styles you need for the button */
+	}
+	#sidebar {
+		width: 200px; /* Set the initial width of the sidebar */
+		transition: width 0.3s ease; /* Add smooth transition for width changes */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: #ffffff;
+		background-color: #4e73df; /* Set the background color for the sidebar */
+	}
+
+	#sidebar.collapsed {
+		width: 50px; /* Set the collapsed width of the sidebar */
+	}
+
+	.nav-links span,
+	#sidebar.collapsed .brand {
+		display: inline-block; /* Show the span and brand element by default */
+	}
+
+	#sidebar.collapsed .nav-links span,
+	#sidebar.collapsed .brand {
+		display: none; /* Hide the span and brand when the sidebar is collapsed */
+	}
+
+	.nav-links .fas {
+		margin-right: 0; /* Remove margin to the right of the icon */
+	}
+
+	.nav-links .nav-link {
+		display: flex;
+		align-items: center;
+	}
+
+	.toggle-btn {
+		/* Change the icon for the toggle button */
+		transition: transform 0.3s ease;
+	}
+
+	#sidebar.collapsed .toggle-btn {
+		transform: scaleX(-1); /* Flip the icon horizontally when collapsed */
+	}
+
+</style>
 <script>
-	///////////////////////////////////////////////// AUTHOR /////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////// HEADER ///////////////////////////////////////////////////////////
+	function toggleSidebar() {
+		const sidebar = document.getElementById('sidebar');
+		sidebar.classList.toggle('collapsed');
+	}
+	///////////////////////////////////////////////// AUTHOR ///////////////////////////////////////////////////////////
 	function editAuthor(id, name) {
 		$("#authorNameEdit").val(name)
 		$("#editForm").attr("action","/admin/authors/"+id+"/edit")
@@ -129,7 +185,7 @@
 
 		$("#deleteForm").attr("action","/admin/books/"+book.id+"/delete")
 	}
-	///////////////////////////////////////////////// CATEGORY /////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////// CATEGORY /////////////////////////////////////////////////////////
 	function editCategory(id, name) {
 		$("#categoryNameEdit").val(name)
 		$("#editForm").attr("action","/admin/categories/"+id+"/edit")
@@ -139,7 +195,7 @@
 		$("#categoryNameDelete").val(name)
 		$("#deleteForm").attr("action","/admin/categories/"+id+"/delete")
 	}
-	///////////////////////////////////////////////// PUBLISHER /////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////// PUBLISHER ////////////////////////////////////////////////////////
 	function editPublisher(id, name) {
 		$("#publisherNameEdit").val(name)
 		$("#editForm").attr("action","/admin/publishers/"+id+"/edit")

@@ -29,16 +29,19 @@ UserRepository userRepository = (UserRepository) request.getAttribute("userRepos
 </head>
 
 <body class="d-flex flex-column vh-100">
-	<jsp:include page="../header.jsp"></jsp:include>
-
-
-	<div class="d-flex px-4 py-1 bg-dark">
-		<div class="col col-9 fs-4 fw-bold text-white">Quản lý hóa đơn</div>
+<div class="d-flex flex-row">
+	<!-- Header ở bên trái -->
+	<div class="header">
+		<jsp:include page="../header.jsp"></jsp:include>
 	</div>
+	<div class="main-content flex-grow-1">
+		<div class="d-flex px-4 py-1 bg-dark">
+			<div class="col col-9 fs-4 fw-bold text-white">Quản lý hóa đơn</div>
+		</div>
 
-	<div class="overflow-auto">
-		<table class="table table-hover table-striped">
-			<thead>
+		<div class="overflow-auto">
+			<table class="table table-hover table-striped">
+				<thead>
 				<tr class="table-secondary">
 					<th scope="col">Id</th>
 					<th scope="col">Tên người dùng</th>
@@ -47,8 +50,8 @@ UserRepository userRepository = (UserRepository) request.getAttribute("userRepos
 					<th scope="col">Trạng thái</th>
 					<th scope="col">Thao tác</th>
 				</tr>
-			</thead>
-			<tbody>
+				</thead>
+				<tbody>
 				<c:forEach items="${bills}" var="bill">
 					<tr>
 						<td>${bill.id}</td>
@@ -57,35 +60,37 @@ UserRepository userRepository = (UserRepository) request.getAttribute("userRepos
 						<td><span class="book-price fw-bold">${bill.getTotalPriceString()}
 								VND</span></td>
 						<td><c:choose>
-								<c:when test="${bill.status == 0}">
-									Chưa giao hàng
-								</c:when>
-								<c:when test="${bill.status == -1}">
-									Hủy giao hàng
-								</c:when>
-								<c:otherwise>
-									Đã giao hàng
-								</c:otherwise>
-							</c:choose></td>
+							<c:when test="${bill.status == 0}">
+								Chưa giao hàng
+							</c:when>
+							<c:when test="${bill.status == -1}">
+								Hủy giao hàng
+							</c:when>
+							<c:otherwise>
+								Đã giao hàng
+							</c:otherwise>
+						</c:choose></td>
 						<td>
 							<button class="btn btn-primary" data-bs-toggle="modal"
-								data-bs-target="#viewModal" onclick="viewBill(${bill.id})">
+									data-bs-target="#viewModal" onclick="viewBill(${bill.id})">
 								<i class="fa-solid fa-eye"></i>
 							</button>
 						</td>
 					</tr>
 				</c:forEach>
-			</tbody>
-		</table>
-	</div>
+				</tbody>
+			</table>
+		</div>
 
 
-	<div class="modal fade modal-lg" id="viewModal" tabindex="-1">
-		<form method="post" action="/admin/books" id="viewForm">
-			<div class="modal-dialog"  id="modalBody">
-				
-			</div>
-		</form>
+		<div class="modal fade modal-lg" id="viewModal" tabindex="-1">
+			<form method="post" action="/admin/books" id="viewForm">
+				<div class="modal-dialog"  id="modalBody">
+
+				</div>
+			</form>
+		</div>
 	</div>
+</div>
 </body>
 </html>
