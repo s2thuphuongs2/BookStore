@@ -181,14 +181,14 @@ public class IndexController {
 		return new ModelAndView("login");
 	}
 
-	@PostMapping("/login")
-	public ModelAndView login(@ModelAttribute("loginInput") LoginInput loginInput){
-//		ModelAndView modelAndView = new ModelAndView("login");
-		if (authService.login(loginInput) != null)
-			return new ModelAndView("redirect:/register");
-		else
-			return new ModelAndView("login");
-	}
+//	@PostMapping("/login")
+//	public ModelAndView login(@ModelAttribute("loginInput") LoginInput loginInput){
+////		ModelAndView modelAndView = new ModelAndView("login");
+//		if (authService.login(loginInput) != null)
+//			return new ModelAndView("redirect:/register");
+//		else
+//			return new ModelAndView("login");
+//	}
 
 	@PostMapping("/register")
 	@ResponseBody

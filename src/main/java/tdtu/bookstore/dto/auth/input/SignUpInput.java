@@ -11,6 +11,5 @@ import java.util.Date;
 public class SignUpInput {
     private String username;
     private String password;
-    private String name;
     private String phone;
 }

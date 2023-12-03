@@ -6,9 +6,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Login</title>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <style>
+<%--        <%@include file="src/main/webapp/WEB-INF/css/styles.min.css"%>--%>
+    </style>
+<%--    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">--%>
+<%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="/assets/css/styles.min.css">
+<%--    <link rel="stylesheet" href="/WEB-INF/css/styles.min.css">--%>
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -19,7 +26,7 @@
                 <div class="card-body p-0">
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-flex">
-                            <div class="flex-grow-1 bg-login-image" style="background-image: url('/assets/img/dogs/image3.jpeg');"></div>
+                            <div class="flex-grow-1 bg-login-image" style="background-image: url('https://i.pinimg.com/564x/0c/9b/89/0c9b89b62ba04b4b4740f4ce2da28b54.jpg');"></div>
                         </div>
                         <div class="col-lg-6">
                             <div class="p-5">
@@ -27,7 +34,9 @@
                                     <h4 class="text-dark mb-4">Welcome Back!</h4>
                                 </div>
                                 <!-- TODO: Add form action-->
-                                <form class="user" action="/login" method="post">
+                                <jsp:useBean id="loginInput" class="tdtu.bookstore.dto.auth.input.LoginInput" scope="page" />
+<%--                                <wf:my-tag obj="${loginInput}" />--%>
+                                <form class="user" action="/login" method="post" >
                                     <div class="mb-3">
                                         <input class="form-control form-control-user" type="text" id="exampleInputEmail"
                                                aria-describedby="userHelp" placeholder="Enter User Name..." name="username"
@@ -59,7 +68,7 @@
                                 </form>
                                 <!-- TODO: Forgot password??-->
                                 <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>
-                                <div class="text-center"><a class="small" type="submit" href="/home.html">Login!</a></div>
+                                <div class="text-center"><a class="small" type="submit" href="/register">Create An Account!</a></div>
                             </div>
                         </div>
                     </div>
@@ -73,3 +82,4 @@
 </body>
 
 </html>
+

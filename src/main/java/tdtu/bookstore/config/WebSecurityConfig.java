@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import tdtu.bookstore.customenum.RoleEnum;
+import tdtu.bookstore.service.AuthService;
 import tdtu.bookstore.service.UserService;
 
 
@@ -18,6 +19,8 @@ public class WebSecurityConfig {
 	
 	@Autowired
 	private LoginSuccessHandler loginSuccessHandler;
+	@Autowired
+	AuthService authService;
 	
 	@Bean
 	public DaoAuthenticationProvider getDaoAuthProvider(UserService userService) {
@@ -35,7 +38,7 @@ public class WebSecurityConfig {
 		.requestMatchers("/checkout", "/checkout/**", "/bills", "/bills/**").hasAnyAuthority("USER", "ADMIN")
 		.anyRequest().permitAll()
 		.and()
-		.formLogin().successHandler(loginSuccessHandler)
+		.formLogin().loginPage("/login").successHandler(loginSuccessHandler)
 		.and()
 		.logout().logoutSuccessUrl("/");
 		
