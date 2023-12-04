@@ -1,113 +1,156 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<jsp:include page="head.jsp"></jsp:include>
-<title>Trang chủ</title>
-
 <style>
-.body {
-	background: #efeff4;
-	padding: 3rem 3rem;
-}
+	.row, .col {
+		margin: 0;
+		padding: 0;
+	}
 
-.type-title {
-	background: red;
-	width: 25% !important;
-	font-size: 1.5rem;
-	line-height: 3rem;
-	color: white;
-	clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%);
-}
+	.header {
+		background: #3388ff;
+		margin: 0;
+	}
 
-.item {
-	display: block;
-	padding: 0.5rem;
-	text-decoration: none;
-}
+	.header-top {
+		height: 7.5rem;
+		margin: 0;
+	}
 
-.book {
-	width: 100%;
-	background: white;
-	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
-	border-radius: 0.25rem;
-	padding: 1rem 2rem;
-}
+	.header-bottom {
+		background: white;
+		color: #3388ff;
+		justify-content: center;
+		margin: 0;
+	}
 
-.book-image {
-	width: 100%;
-	object-fit: contain;
-}
+	.search-bar {
+		padding: 1px;
+		width: 100%;
+		height: 2.5rem;
+		background: white;
+	}
 
-.book-title {
-	color: #3388ff;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-}
+	.search-bar-input {
+		width: 80%;
+		border: 0;
+		outline: 0;
+	}
 
-.book-price {
-	color: red;
-}
+	.search-bar-button {
+		width: 20%;
+		outline: 0;
+		border: 0;
+		color: white;
+		background: #3388ff;
+	}
 
-body {
-	height: 100vh;
-}
+	.cart-button {
+		color: white;
+	}
+
+	.login-button {
+		color: white;
+	}
+
+	.category {
+		flex: 0 0 fit-content;
+		font-weight: bold;
+		font-size: 1.125;
+		line-height: 2rem;
+		padding: 0 0.5rem;
+		text-decoration: none;
+	}
+
+	.click-up {
+		color: white;
+		text-decoration: none;
+	}
+
+	.click-up:hover {
+		color: lightblue;
+		cursor: pointer;
+	}
 </style>
-</head>
 
-<body class="d-flex flex-column">
-	<jsp:include page="header.jsp"></jsp:include>
 
-	<div class="body flex-grow-1" >
-		
-		
-		<div class="row">
-			<div class="row bg-white mb-2">
-				<div class="type-title">Sách mới</div>
-			</div>
-			<div class="row">
-				<c:forEach var="book" items="${latestbooks }">
-					<div class="col col-3 p-2">
-						<a class="item" href="/book/${book.id}">
-							<div class="book">
-								<img class="book-image"
-									src="data:image/webp;base64,${book.image}">
-								<div class="book-title">${book.name}</div>
-								<div class="book-price">${book.getPriceString()} VND</div>
-							</div>
-						</a>
-					</div>
-				</c:forEach>
-			</div>
+<div class="header">
+	<div class="row header-top">
+		<div class="col col-3 h-100 d-flex justify-content-center">
+			<a class="d-block" href="/"><img class="h-100"
+											 src="/images/logo.svg"></a>
 		</div>
-		
-		<div class="row">
-			<div class="row bg-white mb-2">
-				<div class="type-title">Ngẫu nhiên</div>
-			</div>
-			<div class="row">
-				<c:forEach var="book" items="${randbooks }">
-					<div class="col col-3 p-2">
-						<a class="item" href="/book/${book.id}">
-							<div class="book">
-								<img class="book-image"
-									src="data:image/webp;base64,${book.image}">
-								<div class="book-title">${book.name}</div>
-								<div class="book-price">${book.getPriceString()} VND</div>
-							</div>
-						</a>
+		<div class="col col-6 align-self-center">
+			<form class="search-bar row shadow rounded-1" action="/search"
+				  method="get">
+				<input type="text" name="q" value="${query}"
+					   placeholder="Tìm kiếm... " class="search-bar-input"
+					   autocomplete="off">
+				<button class="search-bar-button rounded-1">
+					<i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm
+				</button>
+			</form>
+		</div>
+		<div class="col col-3 align-self-center d-flex justify-content-center">
+			<div class="row w-100">
+				<div class="col-6 login-button">
+					<div class="row">
+						<div class="col flex-grow-0">
+							<i class="fa-solid fa-user fs-2"></i>
+						</div>
+						<div class="col ms-2">
+							<c:choose>
+								<c:when test="${username == 'admin'}">
+									<a class="d-block click-up" href="/admin"><div class="row lh-1" id="logged">${username}</div></a>
+									<a class="d-block click-up" href="/logout"><div
+											class="row lh-1">Đăng xuất</div></a>
+								</c:when>
+								<c:when test="${username != ''}">
+									<div class="row lh-1" id="logged">${username}</div>
+									<a class="d-block click-up" href="/logout"><div
+											class="row lh-1">Đăng xuất</div></a>
+								</c:when>
+								<c:otherwise>
+									<a class="d-block click-up" href="/login"><div
+											class="row lh-1">Đăng nhập</div></a>
+									<a class="d-block click-up">
+										<div class="row lh-1" onclick="registerModal()">Đăng ký</div>
+									</a>
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</div>
-				</c:forEach>
+				</div>
+
+				<div class="col-6 cart-button">
+
+					<div class="row">
+						<div class="col flex-grow-0">
+							<i class="fa-solid fa-cart-shopping fs-2"></i>
+						</div>
+						<div class="col ms-2">
+							<div class="row lh-1"><a class="d-block click-up" href="/checkout">Giỏ hàng <b id="cartCount">${cartcount}</b></a></div>
+							<div class="row lh-1"><a class="d-block click-up" href="/bills">Hóa đơn</a></div>
+						</div>
+					</div>
+				</div>
+
+
 			</div>
 		</div>
 	</div>
+	<div class="row header-bottom">
+		<c:forEach var="categoryEach" items="${categories}">
+			<a class="col category" href="/category/${categoryEach.id}">${categoryEach.name}</a>
+		</c:forEach>
+	</div>
+</div>
 
-	<jsp:include page="modal/register.jsp"></jsp:include>
-
-</body>
-</html>
+<script>
+	function registerModal() {
+		const registerModal = new bootstrap.Modal(document
+				.getElementById('registerModal'))
+		registerModal.show()
+	}
+</script>

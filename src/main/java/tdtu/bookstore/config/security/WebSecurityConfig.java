@@ -39,13 +39,10 @@ public class WebSecurityConfig  {
 		.requestMatchers("/admin", "/admin/**").hasAnyAuthority("ADMIN")
 		.requestMatchers("/checkout", "/checkout/**", "/bills", "/bills/**").hasAnyAuthority("USER", "ADMIN")
 		.anyRequest().permitAll()
-		.and().addFilterBefore(jwtFilter, BasicAuthenticationFilter.class)
+		.and()//.addFilterBefore(jwtFilter, BasicAuthenticationFilter.class)
 		.formLogin().loginPage("/login").successHandler(loginSuccessHandler)
 		.and()
 		.logout().logoutSuccessUrl("/");
-		
-
-
 		return http.build();
 	}
 }

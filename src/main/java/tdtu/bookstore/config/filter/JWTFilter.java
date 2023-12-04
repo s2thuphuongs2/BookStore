@@ -28,39 +28,39 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class JWTFilter extends OncePerRequestFilter {
-
+//public class JWTFilter extends OncePerRequestFilter {
+public class JWTFilter {
 	@Autowired
 	private ObjectMapper objectMapper;
 
 	@Value("${app.secret-key}")
 	private String secretKey;
 
-	@Override
-	protected void doFilterInternal(@NonNull HttpServletRequest request, HttpServletResponse response,
-									@NonNull FilterChain filterChain) throws IOException {
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		try {
-			String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
-			if (StringUtils.isNoneBlank(authorization)) {
-				String token = authorization.replace("Bearer ", "");
-				UserAuthentication user = objectMapper.convertValue(AuthUtil.getPayloadJwt(token, secretKey),
-						UserAuthentication.class);
-				List<SimpleGrantedAuthority> roles = new ArrayList<>();
-				roles.add(new SimpleGrantedAuthority(user.getRole().toString()));
-				Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, roles);
-				SecurityContextHolder.getContext().setAuthentication(authentication);
-			}
-			filterChain.doFilter(request, response);
-		} catch (AuthException e) {
-			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-			response.getWriter().write(objectMapper.writeValueAsString("Ôi không! Bạn ẩu rồi đó"));
-		} catch (Exception e) {
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-			response.getWriter().write(objectMapper.writeValueAsString("Ôi không! Bạn ẩu rồi đó"));
-		}
-
-	}
+//	@Override
+//	protected void doFilterInternal(@NonNull HttpServletRequest request, HttpServletResponse response,
+//									@NonNull FilterChain filterChain) throws IOException {
+//		response.setContentType("application/json");
+//		response.setCharacterEncoding("UTF-8");
+//		try {
+//			String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
+//			if (StringUtils.isNoneBlank(authorization)) {
+//				String token = authorization.replace("Bearer ", "");
+//				UserAuthentication user = objectMapper.convertValue(AuthUtil.getPayloadJwt(token, secretKey),
+//						UserAuthentication.class);
+//				List<SimpleGrantedAuthority> roles = new ArrayList<>();
+//				roles.add(new SimpleGrantedAuthority(user.getRole().toString()));
+//				Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, roles);
+//				SecurityContextHolder.getContext().setAuthentication(authentication);
+//			}
+//			filterChain.doFilter(request, response);
+//		} catch (AuthException e) {
+//			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//			response.getWriter().write(objectMapper.writeValueAsString("Ôi không! Bạn ẩu rồi đó"));
+//		} catch (Exception e) {
+//			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//			response.getWriter().write(objectMapper.writeValueAsString("Ôi không! Bạn ẩu rồi đó"));
+//		}
+//
+//	}
 
 }
