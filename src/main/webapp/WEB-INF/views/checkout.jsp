@@ -6,7 +6,7 @@
 <html>
 <head>
 <jsp:include page="head.jsp"></jsp:include>
-<title>Thể loại ${category.name}</title>
+<title>Thanh toán hóa đơn ${category.name}</title>
 
 <style>
 .body {
