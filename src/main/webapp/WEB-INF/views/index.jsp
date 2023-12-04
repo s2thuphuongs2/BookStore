@@ -15,12 +15,13 @@
 }
 
 .type-title {
-	background: red;
+	background: #5f73ea;
 	width: 25% !important;
 	font-size: 1.5rem;
 	line-height: 3rem;
 	color: white;
 	clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%);
+	border-bottom-left-radius: 20px ;
 }
 
 .item {
@@ -33,8 +34,12 @@
 	width: 100%;
 	background: white;
 	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
-	border-radius: 0.25rem;
 	padding: 1rem 2rem;
+	border-radius: 15px;
+}
+
+.book:hover {
+	box-shadow: 0 1rem 3rem rgba(0, 0, 0, .25);
 }
 
 .book-image {
