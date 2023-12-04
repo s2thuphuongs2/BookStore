@@ -24,6 +24,7 @@ public class WebSecurityConfig  {
 	private JWTFilter jwtFilter;
 
 
+
 	@Bean
 	public DaoAuthenticationProvider getDaoAuthProvider(UserServiceImpl userService) {
 	  DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -40,8 +41,8 @@ public class WebSecurityConfig  {
 		.requestMatchers("/checkout", "/checkout/**", "/bills", "/bills/**").hasAnyAuthority("USER", "ADMIN")
 		.anyRequest().permitAll()
 		.and().addFilterBefore(jwtFilter, BasicAuthenticationFilter.class)
-		//.formLogin().loginPage("/login").successHandler(loginSuccessHandler)
-		//.and()
+		.formLogin().loginPage("/login").successHandler(loginSuccessHandler)
+		.and()
 		.logout().logoutSuccessUrl("/");
 		
 

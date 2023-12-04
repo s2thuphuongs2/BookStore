@@ -4,15 +4,9 @@ import tdtu.bookstore.service.AuthService;
 import tdtu.bookstore.repository.UserRepository;
 
 import tdtu.bookstore.customenum.RoleEnum;
-//import com.example.shoponline.customenum.UserTypeEnum;
 import tdtu.bookstore.dto.auth.UserAuthentication;
-import tdtu.bookstore.dto.auth.input.LoginInput;
-import tdtu.bookstore.dto.auth.input.SignUpInput;
 import tdtu.bookstore.dto.auth.output.LoginOutput;
-import tdtu.bookstore.dto.auth.output.SignUpOutput;
 import tdtu.bookstore.model.User;
-import tdtu.bookstore.exception.BusinessException;
-import tdtu.bookstore.mapper.UserMapper;
 import tdtu.bookstore.util.AuthUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,8 +24,6 @@ public class AuthServiceImpl implements AuthService {
 	private UserRepository userRepository;
 	@Autowired
 	private ObjectMapper objectMapper;
-	@Autowired
-	private RedisTemplate<String, Object> redisTemplate;
 
 	@Value("${app.secret-key}")
 	private String secretKey;

@@ -55,8 +55,9 @@
                                     </div>
                                     <button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
                                     <hr>
-                                    <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i
-                                            class="fab fa-google"></i>&nbsp; Login with Google</a><a
+                                  <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i
+                                          class="fab fa-google"></i>&nbsp; Login with Google</a>
+                                    <a
                                         class="btn btn-primary d-block btn-facebook btn-user w-100"  role="button"><i
                                         class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
                                     <hr>
@@ -73,7 +74,7 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/js/script.min.js"></script>
+<script src="../../assets/js/script.min.jsp"></script>
 <script>
     function registerModal() {
         const registerModal = new bootstrap.Modal(document
@@ -81,26 +82,6 @@
         registerModal.show()
     }
 </script>
-<script>
-    $('#loginForm').submit(function(e){
-        e.preventDefault();
-        $.ajax({
-            url: '/login',
-            type: 'post',
-            data:$('#loginForm').serialize(),
-            success: (data) => {
-                if (data == "LOGIN_SUCCESS"){
-                    window.location.replace("/login")
-                } else if (data == "NOT_EXISTED_USERNAME" || data == "INCORRECT_PASSWORD"){
-                    alert("Username hoặc Password không đúng!")
-                } else {
-                    alert("Đăng nhập thất bại!")
-                }
-            }
-        });
-    });
-</script>
-
 <jsp:include page="modal/register.jsp"></jsp:include>
 
 </body>
