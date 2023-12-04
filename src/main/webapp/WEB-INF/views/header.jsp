@@ -9,7 +9,7 @@
 }
 
 .header {
-	background: #3388ff;
+	background: linear-gradient(#2079ff, #cedff6);
 	margin: 0;
 }
 
@@ -21,6 +21,7 @@
 .header-bottom {
 	background: white;
 	color: #3388ff;
+
 	justify-content: center;
 	margin: 0;
 	font-family: "JetBrains Mono ExtraBold", Helvetica, Arial, sans-serif;

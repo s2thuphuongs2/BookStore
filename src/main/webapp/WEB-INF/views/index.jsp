@@ -35,7 +35,6 @@
 	background: white;
 	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 	padding: 1rem 2rem;
-	border-radius: 15px;
 }
 
 .book:hover {
@@ -61,6 +60,10 @@
 
 body {
 	height: 100vh;
+}
+
+.bg-white {
+	border-radius: 15px;
 }
 </style>
 </head>
