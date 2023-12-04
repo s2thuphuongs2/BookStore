@@ -69,11 +69,11 @@ public class Book {
 		return NumberFormat.getNumberInstance(Locale.US).format(this.price*this.quantity);
 	}
 
-//	public String getPriceString() {
-//		return NumberFormat.getNumberInstance(Locale.US).format(this.price);
-//	}
-//
-//	public String getDescriptionHTML() {
-//		return this.description.replaceAll("\n", "<br>");
-//	}
+	public String getPriceString() {
+		return NumberFormat.getNumberInstance(Locale.US).format(this.price);
+	}
+
+	public String getDescriptionHTML() {
+		return this.description.replaceAll("\n", "<br>");
+	}
 }
