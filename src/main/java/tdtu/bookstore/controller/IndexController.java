@@ -10,13 +10,9 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import tdtu.bookstore.dto.auth.input.LoginInput;
 import tdtu.bookstore.model.Author;
 import tdtu.bookstore.model.Bill;
 import tdtu.bookstore.model.Book;
@@ -174,37 +170,33 @@ public class IndexController {
 	}
 
 	@GetMapping("/login")
-	public ModelAndView login(Model model) {
-//		ModelAndView modelAndView = new ModelAndView("login");
-		model.addAttribute("loginInput", new LoginInput());
-
+	public ModelAndView login() {
 		return new ModelAndView("login");
 	}
 
-//	@PostMapping("/login")
-//	public ModelAndView login(@ModelAttribute("loginInput") LoginInput loginInput){
-////		ModelAndView modelAndView = new ModelAndView("login");
-//		if (authService.login(loginInput) != null)
-//			return new ModelAndView("redirect:/register");
-//		else
-//			return new ModelAndView("login");
-//	}
+	@PostMapping("/login")
+	@ResponseBody
+	public String login(@RequestParam(value = "username") String username,
+						@RequestParam(value = "password") String password) {
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password); // TODO: AuthUtil encoded password
+
+		return authService.login(user);// "login_success"; //use in login.jsp
+	}
 
 	@PostMapping("/register")
 	@ResponseBody
 	public String processRegister(@RequestParam(value = "username") String username,
-			@RequestParam(value = "password") String password, @RequestParam(value = "phone") String phone) {
+										@RequestParam(value = "password") String password, @RequestParam(value = "phone") String phone) {
 		User user = new User();
 		user.setUsername(username);
 		user.setPhone(phone);
+		user.setPassword(password); // TODO: AuthUtil encoded password
 
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(password);
-		user.setPassword(encodedPassword);
+//		userRepository.save(user);
 
-		userRepository.save(user);
-
-		return "register_success";
+		return authService.signUp(user);// "register_success"; //use in register.jsp
 	}
 	
 	@GetMapping("/checkout")

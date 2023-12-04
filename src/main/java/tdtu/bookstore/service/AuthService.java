@@ -5,8 +5,9 @@ import tdtu.bookstore.dto.auth.input.LoginInput;
 import tdtu.bookstore.dto.auth.input.SignUpInput;
 import tdtu.bookstore.dto.auth.output.LoginOutput;
 import tdtu.bookstore.dto.auth.output.SignUpOutput;
+import tdtu.bookstore.model.User;
 
 public interface AuthService {
-    LoginOutput login(LoginInput input);
-    SignUpOutput signUp(SignUpInput input);
+    String login(User input);
+    String signUp(User input);
 }

@@ -1,5 +1,6 @@
 package tdtu.bookstore.util;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import tdtu.bookstore.dto.auth.UserAuthentication;
 import tdtu.bookstore.exception.AuthException;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -18,6 +19,10 @@ public final class AuthUtil {
 
 	public static String hashPassword(String password) {
 		return DigestUtils.sha256Hex(password);
+	}
+	public static String encodedPassword(String password) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return passwordEncoder.encode(password);
 	}
 
 	public static String generateToken(Map<String, Object> payload, String secretKey) {

@@ -40,8 +40,8 @@ public class WebSecurityConfig  {
 		.requestMatchers("/checkout", "/checkout/**", "/bills", "/bills/**").hasAnyAuthority("USER", "ADMIN")
 		.anyRequest().permitAll()
 		.and().addFilterBefore(jwtFilter, BasicAuthenticationFilter.class)
-		.formLogin().loginPage("/login").successHandler(loginSuccessHandler)
-		.and()
+		//.formLogin().loginPage("/login").successHandler(loginSuccessHandler)
+		//.and()
 		.logout().logoutSuccessUrl("/");
 		
 

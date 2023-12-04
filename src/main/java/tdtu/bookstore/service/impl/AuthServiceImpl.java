@@ -37,52 +37,51 @@ public class AuthServiceImpl implements AuthService {
 	private String secretKey;
 
 	@Override
-	public LoginOutput login(LoginInput input) {
-		Object test = redisTemplate.opsForValue().get("test");
-		if (test != null) return (LoginOutput) test;
+	public String login(User input) {
 		// Kiểm tra username có tồn tại chưa
 		String username = input.getUsername();
 		User existedUser = userRepository.findByUsername(username);
 		if (existedUser == null) {
-			throw new BusinessException("NOT_EXISTED_USERNAME", "Tài khoản chưa tồn tại!");
+			return "NOT_EXISTED_USERNAME";
 		}
-		String hashedPassword = AuthUtil.hashPassword(input.getPassword());
+		// Mã hóa mật khẩu
+		String presentPassword = AuthUtil.encodedPassword(input.getPassword());
 		String savedPassword = existedUser.getPassword();
-		if (!hashedPassword.equals(savedPassword)) {
-			throw new BusinessException("INCORRECT_PASSWORD", "Mật khẩu nhập không chính xác!");
+		if (!presentPassword.equals(savedPassword)) {
+			return "INCORRECT_PASSWORD";
 		}
 		// Generate jwt(json web token) and return
 		UserAuthentication userAuthentication = new UserAuthentication();
 		userAuthentication.setUserId(existedUser.getId());
 		userAuthentication.setRole(existedUser.getRole());
-//		userAuthentication.setType(existedUser.getType());
 		Map<String, Object> payload = objectMapper.convertValue(userAuthentication, new TypeReference<>() {
 		});
 		LoginOutput output = new LoginOutput();
 		output.setUserId(existedUser.getId());
 		output.setToken(AuthUtil.generateToken(payload, secretKey));
-		redisTemplate.delete("test");
-		return output;
+		return "LOGIN_SUCCESS";
 	}
 
 	@Override
-	public SignUpOutput signUp(SignUpInput input) {
+	public String signUp(User input) {
 		// Kiểm tra username có tồn tại chưa
 		String username = input.getUsername();
 		User existedUsername = userRepository.findByUsername(username);
 		if (existedUsername != null) {
-			throw new BusinessException("EXISTED_USERNAME", "Tài khoản đã tồn tại!");
+			return "EXISTED_USERNAME";
 		}
+		// Kiểm tra phone có tồn tại chưa
 		String phoneNumber = input.getPhone();
 		User existedPhoneNumber = userRepository.findFirstByPhoneNumber(phoneNumber);
 		if (existedPhoneNumber != null) {
-			throw new BusinessException("EXISTED_PHONE_NUMBER", "Số điện thoại đã tồn tại!");
+			return "EXISTED_PHONE_NUMBER";
 		}
-		User newUser = UserMapper.INSTANCE.mapFromSignUpInput(input);
-		newUser.setRole(RoleEnum.USER);
-//		newUser.setType(UserTypeEnum.BASIC);
-		userRepository.save(newUser);
+		input.setRole(RoleEnum.USER);
+		// Mã hóa mật khẩu
+		input.setPassword(AuthUtil.encodedPassword(input.getPassword()));
 
-		return new SignUpOutput(newUser.getId());
+		userRepository.save(input);
+
+		return "REGISTER_SUCCESS";
 	}
 }

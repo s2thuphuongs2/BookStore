@@ -13,7 +13,7 @@ public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     @Mapping(target = "password", expression = "java(AuthUtil.hashPassword(input.getPassword()))")
-    User mapFromSignUpInput(SignUpInput input);
+    User mapFromSignUpInput(User input);
 
 
 //    GetPersonalInfoOutput mapToPersonalInfoOutput(UserEntity input);

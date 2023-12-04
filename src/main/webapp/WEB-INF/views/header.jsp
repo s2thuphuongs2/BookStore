@@ -23,6 +23,7 @@
 	color: #3388ff;
 	justify-content: center;
 	margin: 0;
+	font-family: "JetBrains Mono ExtraBold", Helvetica, Arial, sans-serif;
 }
 
 .search-bar {
@@ -46,6 +47,10 @@
 	background: #3388ff;
 }
 
+.search-bar-button:hover {
+	background: #0a3067;
+}
+
 .cart-button {
 	color: white;
 }
@@ -57,7 +62,7 @@
 .category {
 	flex: 0 0 fit-content;
 	font-weight: bold;
-	font-size: 1.125;
+	font-size: 1.2rem;
 	line-height: 2rem;
 	padding: 0 0.5rem;
 	text-decoration: none;

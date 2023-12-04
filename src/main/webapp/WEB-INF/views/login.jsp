@@ -31,18 +31,15 @@
                                 <div class="text-center">
                                     <h4 class="text-dark mb-4">Welcome Back!</h4>
                                 </div>
-                                <!-- TODO: Add form action-->
-                                <jsp:useBean id="loginInput" class="tdtu.bookstore.dto.auth.input.LoginInput" scope="page" />
-<%--                                <wf:my-tag obj="${loginInput}" />--%>
-                                <form class="user" action="/login" method="post" >
+
+                                <form class="user" action="/login" method="post" id = "loginForm">
                                     <div class="mb-3">
-                                        <input class="form-control form-control-user" type="text" id="exampleInputEmail"
-                                               aria-describedby="userHelp" placeholder="Enter User Name..." name="username"
-                                               value="${loginInput.username}" required/>
+                                        <input class="form-control form-control-user" type="text" id="inputUsername"
+                                               aria-describedby="userHelp" placeholder="Enter User Name..." name="username" required/>
                                     </div>
                                     <div class="mb-3">
-                                        <input class="form-control form-control-user" type="password" id="exampleInputPassword"
-                                               placeholder="Password" name="password" value="${loginInput.password}" required/>
+                                        <input class="form-control form-control-user" type="password" id="inputPassword"
+                                               placeholder="Password" name="password" required/>
                                     </div>
 
                                     <div class="mb-3">
@@ -60,13 +57,13 @@
                                     <hr>
                                     <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i
                                             class="fab fa-google"></i>&nbsp; Login with Google</a><a
-                                        class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i
+                                        class="btn btn-primary d-block btn-facebook btn-user w-100"  role="button"><i
                                         class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
                                     <hr>
                                 </form>
-                                <!-- TODO: Forgot password??-->
-                                <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>
-                                <div class="text-center"><a class="small" type="submit" href="/register">Create An Account!</a></div>
+
+                                <div class="text-center">You don't have an account?</div>
+                                <div class="text-center"><a class="small" type="submit" onclick="registerModal()">Create An Account!</a></div>
                             </div>
                         </div>
                     </div>
@@ -77,6 +74,35 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/script.min.js"></script>
+<script>
+    function registerModal() {
+        const registerModal = new bootstrap.Modal(document
+            .getElementById('registerModal'))
+        registerModal.show()
+    }
+</script>
+<script>
+    $('#loginForm').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '/login',
+            type: 'post',
+            data:$('#loginForm').serialize(),
+            success: (data) => {
+                if (data == "LOGIN_SUCCESS"){
+                    window.location.replace("/login")
+                } else if (data == "NOT_EXISTED_USERNAME" || data == "INCORRECT_PASSWORD"){
+                    alert("Username hoặc Password không đúng!")
+                } else {
+                    alert("Đăng nhập thất bại!")
+                }
+            }
+        });
+    });
+</script>
+
+<jsp:include page="modal/register.jsp"></jsp:include>
+
 </body>
 
 </html>
