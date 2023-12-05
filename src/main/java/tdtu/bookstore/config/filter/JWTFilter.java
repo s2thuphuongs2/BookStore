@@ -39,6 +39,7 @@ public class JWTFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(@NonNull HttpServletRequest request, HttpServletResponse response,
 									@NonNull FilterChain filterChain) throws IOException {
+
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		try {
