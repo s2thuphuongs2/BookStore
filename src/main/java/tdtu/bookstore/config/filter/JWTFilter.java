@@ -43,21 +43,26 @@ public class JWTFilter extends OncePerRequestFilter {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		try {
+			// Lấy thông tin xác thực từ token
 			String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
 			if (StringUtils.isNoneBlank(authorization)) {
 				String token = authorization.replace("Bearer ", "");
 				UserAuthentication user = objectMapper.convertValue(AuthUtil.getPayloadJwt(token, secretKey),
 						UserAuthentication.class);
+				// Tạo đối tượng Authentication và đặt nó vào SecurityContextHolder
 				List<SimpleGrantedAuthority> roles = new ArrayList<>();
 				roles.add(new SimpleGrantedAuthority(user.getRole().toString()));
 				Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, roles);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
+			// Tiếp tục chuyển request đến các filter hoặc controller khác
 			filterChain.doFilter(request, response);
 		} catch (AuthException e) {
+			// Xử lý nếu có lỗi xác thực
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-			response.getWriter().write(objectMapper.writeValueAsString("Ôi không! Bạn ẩu rồi đó"));
+			response.getWriter().write(objectMapper.writeValueAsString("Lỗi xác thực! Bạn ẩu rồi đó"));
 		} catch (Exception e) {
+			// Xử lý nếu có lỗi khác
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			response.getWriter().write(objectMapper.writeValueAsString("Ôi không! Bạn ẩu rồi đó"));
 		}

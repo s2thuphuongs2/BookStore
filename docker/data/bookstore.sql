@@ -283,8 +283,8 @@ ALTER TABLE `publishers`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
-ALTER table `users`
-  ADD UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`) USING HASH;
+# ALTER table `users`
+#   ADD UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`) USING HASH;
 
 --
 -- AUTO_INCREMENT for dumped tables
